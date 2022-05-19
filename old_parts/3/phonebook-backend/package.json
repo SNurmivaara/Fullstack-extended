@@ -6,18 +6,18 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../phonebook-frontend && npm run build && cp -r build ../phonebook-backend",
+    "deploy": "cd .... && git subtree push --prefix old_parts/3/phonebook-backend heroku master",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "Sami Nurmivaara",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.1",
-    "morgan": "^1.10.0",
-    "build:ui": "rm -rf build && cd ../phonebook-frontend && npm run build && cp -r build ../phonebook-backend",
-    "deploy": "cd .... && git subtree push --prefix old_parts/3/phonebook-backend heroku master",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
